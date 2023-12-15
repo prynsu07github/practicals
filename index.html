@@ -1,13 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>HTML + CSS</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>This is a simple HTML + CSS template!</h1>
-  </body>
-</html>
+<h1 style="text-align: center;"><u><b><span style="font-size: medium;">AI-Practical</span></b></u></h1><div><u><b><span style="font-size: medium;"><br /></span></b></u></div><p>Prac1</p><p>A)</p><p><span face="&quot;Courier New&quot;, Courier, monospace, arial, sans-serif" style="background-color: white; font-size: 14px;">dict_gn=dict(</span></p><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;">Arad=dict(Timisoara=118,Zerind=75,Sibiu=140),
+  Bucharest=dict(Fagaras=211,Urziceni=85,Giurgiu=90,Pitesti=101),
+  Craiova=dict(Drobeta=120,Pitesti=138,Rimnicu=146),
+  Drobeta=dict(Mehadia=75,Craiova=120),
+  Eforie=dict(Hirsova=86),
+  Fagaras=dict(Sibiu=99,Bucharest=211),
+  Giurgiu=dict(Bucharest=90),
+  Hirsova=dict(Eforie=86,Urziceni=98),
+  Iasi=dict(Neamt=87,Vaslui=92),
+  Lugoj=dict(Mehadia=70,Timisoara=111),
+  Mehadia=dict(Lugoj=70,Drobeta=75),
+  Neamt=dict(Iasi=87),
+  Oradea=dict(Zerind=71,Sibiu=151),
+  Pitesti=dict(Rimnicu=97,Bucharest=101,Craiova=138),
+  Rimnicu=dict(Sibiu=80,Pitesti=97,Craiova=146),
+  Sibiu=dict(Fagaras=99,Rimnicu=80,Arad=140,Oradea=151),
+  Timisoara=dict(Lugoj=111,Arad=118),
+  Urziceni=dict(Bucharest=85,Hirsova=98,Vaslui=142),
+  Vaslui=dict(Iasi=92,Urziceni=142),
+  Zerind=dict(Oradea=71,Arad=75)
+  )
+  import queue as Q
+  start='Arad'
+  goal='Bucharest'
+  result=''
+  
+  def BFS(city, cityq, visitedq):
+      global result
+      if city==start:
+          result=result+' '+city
+      for eachcity in dict_gn[city].keys():
+          if eachcity==goal:
+              result=result+' '+eachcity
+              return
+          if eachcity not in cityq.queue and eachcity not in visitedq.queue:
+              cityq.put(eachcity)
+              result=result+' '+eachcity
+      visitedq.put(city)
+      BFS(cityq.get(),cityq,visitedq)
+  
+  def main():
+      cityq=Q.Queue()
+      visitedq=Q.Queue()
+      BFS(start, cityq, visitedq)
+      print("BFS Traversal from ",start," to ",goal," is: ")
+      print(result)
+      
+  main()
+  
+  """
+  OUTPUT:
+  BFS Traversal from  Arad  to  Bucharest  is: 
+   Arad Timisoara Zerind Sibiu Lugoj Oradea Fagaras Rimnicu Mehadia Bucharest
+  """</pre><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;"><br /></pre><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;"><br /></pre><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;">B)</pre><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;"><br /></pre><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; background-color: white; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; font-size: 14px; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;"><pre class="ndfHFb-c4YZDc-fmcmS-DARUcf" style="-webkit-tap-highlight-color: transparent; font-family: &quot;Courier New&quot;, Courier, monospace, arial, sans-serif; margin-bottom: 0px; margin-top: 0px; overflow-wrap: break-word; text-wrap: wrap; user-select: text;">dict_gn=dict(
+  Arad=dict(Zerind=75,Timisoara=118,Sibiu=140),
+  Bucharest=dict(Urziceni=85,Giurgiu=90,Pitesti=101,Fagaras=211),
+  Craiova=dict(Drobeta=120,Pitesti=138,Rimnicu=146),
+  Drobeta=dict(Mehadia=75,Craiova=120),
+  Eforie=dict(Hirsova=86),
+  Fagaras=dict(Sibiu=99,Bucharest=211),
+  Giurgiu=dict(Bucharest=90),
+  Hirsova=dict(Eforie=86,Urziceni=98),
+  Iasi=dict(Neamt=87,Vaslui=92),
+  Lugoj=dict(Mehadia=70,Timisoara=111),
+  Mehadia=dict(Lugoj=70,Drobeta=75),
+  Neamt=dict(Iasi=87),
+  Oradea=dict(Zerind=71,Sibiu=151),
+  Pitesti=dict(Rimnicu=97,Bucharest=101,Craiova=138),
+  Rimnicu=dict(Sibiu=80,Pitesti=97,Craiova=146),
+  Sibiu=dict(Rimnicu=80,Fagaras=99,Arad=140,Oradea=151),
+  Timisoara=dict(Lugoj=111,Arad=118),
+  Urziceni=dict(Bucharest=85,Hirsova=98,Vaslui=142),
+  Vaslui=dict(Iasi=92,Urziceni=142),
+  Zerind=dict(Oradea=71,Arad=75)
+  )
+  import queue as Q
+  
+  start='Arad'
+  goal='Bucharest'
+  result=''
+  
+  def DLS(city, visitedstack, startlimit, endlimit):
+      global result
+      found=0
+      result=result+city+' '
+      visitedstack.append(city)
+      if city==goal:
+          return 1
+      if startlimit==endlimit:
+          return 0
+      for eachcity in dict_gn[city].keys():
+          if eachcity not in visitedstack:
+              found=DLS(eachcity, visitedstack, startlimit+1, endlimit)
+              if found:
+                  return found
+  
+  def IDDFS(city, visitedstack, endlimit):
+      global result
+      for i in range(0, endlimit):
+          print("Searching at Limit: ",i)
+          found=DLS(city, visitedstack, 0, i)
+          if found:
+              print("Found")
+              break
+          else:
+              print("Not Found! ")
+              print(result)
+              print("-----")
+              result=' '
+              visitedstack=[]
+  
+  def main():
+      visitedstack=[]
+      IDDFS(start, visitedstack, 9)
+      print("IDDFS Traversal from ",start," to ", goal," is: ")
+      print(result)
+  
+  
+  main() </pre></pre>
